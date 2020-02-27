@@ -61,7 +61,9 @@ public class Review {
    @Column(name = "deleted_at")
     private Date deleted_at;
 
-    
+  public Long getId(){
+    return this.id;
+  }
 
   public void setId(Long id){
       this.id=id;
