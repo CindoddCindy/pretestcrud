@@ -27,7 +27,7 @@ public class ReviewRepository implements ReviewInterface {
     @Override
     @Transactional(readOnly = true)
     public Long size() {
-        Long count = manager.createQuery("select count(*) from review where deleted_at IS NULL", Long.class).getSingleResult();
+        Long count = manager.createQuery("select count(*) from Review where deleted_at IS NULL", Long.class).getSingleResult();
         return count;
     }
 
@@ -65,7 +65,7 @@ public class ReviewRepository implements ReviewInterface {
         try {
 
             Review review = manager.find(Review.class, id);
-            //if(rate_star.equals("-")==false)review.setRateStar(rate_star);
+            if(rate_star !=0)review.setRateStar(rate_star);
             if (name.equals("-")==false) review.setName(name);
             if (my_review.equals("-")==false) review.setReview(my_review);
             if (image.equals("-")==false) review.setImage(image);

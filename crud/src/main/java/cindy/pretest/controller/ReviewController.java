@@ -17,7 +17,10 @@ import io.micronaut.http.annotation.Put;
 import io.micronaut.http.annotation.QueryValue;
 import cindy.pretest.model.Review;
 import cindy.pretest.repository.ReviewInterface;
+import io.micronaut.validation.Validated;
 
+
+@Validated
 @Controller("/review")
 public class ReviewController{
 
@@ -42,13 +45,13 @@ public class ReviewController{
         return (new Gson()).toJson(repository.findById(id));
     }
 
-    @Post(consumes=MediaType.APPLICATION_FORM_URLENCODED)//APPLICATION_JSON
+    @Post(consumes=MediaType.APPLICATION_JSON)//APPLICATION_FORM_URLENCODED
     public String save(@Body Review t) {
         HashMap<String, Object> data = new HashMap<>();
         if (repository.save(t)) {
-            data.put("status", "ok");
+            data.put("status", " post sucessfull");
         } else {
-            data.put("status", "fail");
+            data.put("status", "oops post fail");
         }
         return (new Gson()).toJson(data);
     }
@@ -58,9 +61,9 @@ public class ReviewController{
         HashMap<String, Object> data = new HashMap<>();
         if (repository.update(c.getId(), c.getRateStar(), c.getName(), c.getReview(), c.getImage())) {
         // if (repository.updateCode(c.getId(), c.getCode())) {
-            data.put("status", "ok");
+            data.put("status", "edit sucessfull");
         } else {
-            data.put("status", "fail");
+            data.put("status", " oops edit fail");
         }
         return (new Gson()).toJson(data);
     }
@@ -70,11 +73,12 @@ public class ReviewController{
     public String destroy(@PathVariable Long id) {
         HashMap<String, Object> data = new HashMap<>();
         if (repository.destroy(id)) {
-            data.put("status", "ok");
+            data.put("status", "Delete sucessfull");
         } else {
-            data.put("status", "fail");
+            data.put("status", " oops delete fail");
         }
         return (new Gson()).toJson(data);
         // return String.valueOf(id);
     }
 }
+//"id": 533176285251043329,

@@ -18,7 +18,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 
 @Entity
-@Table(name = "review")
+@Table(name ="review")
 public class Review {
 
     @Id
@@ -76,9 +76,7 @@ public class Review {
   }
 
 
-  public Long getId(){
-      return id;
-  }
+  
 
   public void setName(String name){
       this.name=name;
