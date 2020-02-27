@@ -61,6 +61,8 @@ tasks.withType(JavaCompile){
     options.compilerArgs.add('-parameters')
 }
 
+task stage(dependsOn: ['installDist'])
+
 shadowJar {
     mergeServiceFiles()
 }
